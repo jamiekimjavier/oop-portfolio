@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Jamie Kim Javier - Tactical Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#00f2ff",
+                        "primary-fixed": "#74f5ff",
+                        "surface": "#111318",
+                        "surface-container-low": "#1a1c20",
+                        "surface-container": "#1e2024",
+                        "on-surface": "#e2e2e8",
+                        "on-surface-variant": "#b9cacb",
+                        "secondary": "#a0caff",
+                        "secondary-fixed": "#d2e4ff",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "outline-variant": "#3a494b",
+                    },
+                    fontFamily: {
+                        "body": ["Inter", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Sci-Fi Background & Overlays */
+        body {
+            background-color: #0c0e12;
+            background-image: radial-gradient(circle at center, #111318 0%, #0c0e12 100%);
+        }
+        .scanlines {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.2) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        
+        /* Modular Glass Panels */
+        .glass-panel {
+            background-color: rgba(26, 28, 32, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.02);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 242, 255, 0.6);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1), inset 0 0 20px rgba(0, 242, 255, 0.05);
+        }
+        
+        /* Sci-Fi Corners */
+        .angled-corner {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+        }
+
+        /* Custom Scrollbar for Code Blocks */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #111318; }
+        ::-webkit-scrollbar-thumb { background: #00f2ff; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #74f5ff; }
+        
+        /* Modal Animation */
+        .modal-enter { animation: modalFadeIn 0.3s ease-out forwards; }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="text-on-surface font-body min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-surface">
+    
+    <div class="fixed inset-0 scanlines z-[9999] mix-blend-overlay pointer-events-none"></div>
+
+    <header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center h-16 px-8 md:px-12 bg-black/85 backdrop-blur-md border-b border-primary-container/30 shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
+        <div class="text-xl font-black font-display tracking-tighter text-primary-container drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]">
+            OOP_PORTFOLIO
+        </div>
+        <nav class="hidden md:flex gap-8">
+            <a href="#home" class="font-display uppercase text-xs font-bold text-primary-container hover:text-white transition-colors py-2">Home</a>
+            <a href="#midterms" class="font-display uppercase text-xs font-bold text-primary-container hover:text-white transition-colors py-2">Midterms</a>
+            <a href="#finals" class="font-display uppercase text-xs font-bold text-error hover:text-white transition-colors py-2">Finals</a>
+            <a href="#contact" class="font-display uppercase text-xs font-bold text-primary-container hover:text-white transition-colors py-2">Contact</a>
+        </nav>
+    </header>
+
+    <main class="pt-24 pb-32 px-4 md:px-12 max-w-[1400px] mx-auto space-y-16">
+
+        <section id="home" class="scroll-mt-28 mb-12">
+            <div class="glass-panel p-8 angled-corner relative overflow-hidden border-t-2 border-t-primary-container">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-container/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10 min-h-[500px]">
+                    
+                    <div class="lg:col-span-3 flex flex-col justify-center space-y-8 relative z-20">
+                        <div>
+                            <h2 class="font-display text-xs text-secondary/70 tracking-[0.2em] mb-1 uppercase">Commander_ID</h2>
+                            <h1 class="font-display text-4xl font-bold text-primary-fixed uppercase leading-none drop-shadow-[0_0_10px_rgba(0,242,255,0.6)]">Jamie Kim<br>Javier</h1>
+                        </div>
+                        
+                        <div class="space-y-4 border-l-2 border-primary-container/30 pl-4 py-2">
+                            <div>
+                                <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Class / Program</span>
+                                <p class="font-body text-sm text-white font-medium">BS Information Technology</p>
+                            </div>
+                            <div>
+                                <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Specialization</span>
+                                <p class="font-body text-sm text-white font-medium">Object-Oriented Programming</p>
+                            </div>
+                            <div>
+                                <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Squadron / Section</span>
+                                <p class="font-body text-sm text-white font-medium">2-1N</p>
+                            </div>
+                            <div>
+                                <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Academy Base</span>
+                                <p class="font-body text-sm text-white font-medium">Polytechnic University of the Philippines</p>
+                            </div>
+                            <div>
+                                <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Spawn Date</span>
+                                <p class="font-body text-sm text-white font-medium">March 26, 2006</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 relative flex flex-col items-center justify-center min-h-[400px] lg:min-h-full">
+                        <div id="3d-model-container" class="absolute inset-0 cursor-move z-20"></div>
+                        
+                        <div class="absolute inset-0 pointer-events-none z-10 flex flex-col justify-between items-center py-4">
+                            <div class="w-full flex justify-between px-12 opacity-30">
+                                <span class="border-t-2 border-l-2 border-primary-container w-4 h-4"></span>
+                                <span class="border-t-2 border-r-2 border-primary-container w-4 h-4"></span>
+                            </div>
+                            <div class="w-full flex justify-between px-12 opacity-30">
+                                <span class="border-b-2 border-l-2 border-primary-container w-4 h-4"></span>
+                                <span class="border-b-2 border-r-2 border-primary-container w-4 h-4"></span>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-6 z-30 pointer-events-none">
+                            <span class="font-display text-primary-container/80 text-[10px] tracking-[0.3em] bg-black/60 px-6 py-2 border border-primary-container/30 backdrop-blur-sm shadow-[0_0_15px_rgba(0,242,255,0.2)] flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[14px]">360</span> DRAG TO ROTATE
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-3 flex flex-col justify-center space-y-10 relative z-20">
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full border-2 border-primary-container flex items-center justify-center bg-primary-container/10 shrink-0 shadow-[0_0_15px_rgba(0,242,255,0.3)]">
+                                    <span class="material-symbols-outlined text-primary-container">favorite</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between font-display text-[10px] tracking-widest uppercase mb-1">
+                                        <span class="text-on-surface-variant">Health (Motivation)</span>
+                                        <span class="text-primary-container font-bold">100%</span>
+                                    </div>
+                                    <div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary-container shadow-[0_0_10px_#00f2ff]" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full border-2 border-secondary flex items-center justify-center bg-secondary/10 shrink-0 shadow-[0_0_15px_rgba(160,202,255,0.3)]">
+                                    <span class="material-symbols-outlined text-secondary">shield</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between font-display text-[10px] tracking-widest uppercase mb-1">
+                                        <span class="text-on-surface-variant">Shields (Caffeine)</span>
+                                        <span class="text-secondary font-bold">85%</span>
+                                    </div>
+                                    <div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                                        <div class="h-full bg-secondary shadow-[0_0_10px_#a0caff]" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-display text-secondary/70 text-xs tracking-widest uppercase border-b border-secondary/30 pb-2 mb-4">Current Loadout</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 group">
+                                    <span class="material-symbols-outlined text-primary-fixed text-sm border border-primary-fixed/30 p-1.5 bg-primary-fixed/10 group-hover:bg-primary-fixed/20 transition-colors">code</span>
+                                    <span class="font-body text-sm text-on-surface group-hover:text-primary-fixed transition-colors">Java SE</span>
+                                </li>
+                                <li class="flex items-center gap-3 group">
+                                    <span class="material-symbols-outlined text-primary-fixed text-sm border border-primary-fixed/30 p-1.5 bg-primary-fixed/10 group-hover:bg-primary-fixed/20 transition-colors">terminal</span>
+                                    <span class="font-body text-sm text-on-surface group-hover:text-primary-fixed transition-colors">Object-Oriented Logic</span>
+                                </li>
+                                <li class="flex items-center gap-3 group">
+                                    <span class="material-symbols-outlined text-primary-fixed text-sm border border-primary-fixed/30 p-1.5 bg-primary-fixed/10 group-hover:bg-primary-fixed/20 transition-colors">account_tree</span>
+                                    <span class="font-body text-sm text-on-surface group-hover:text-primary-fixed transition-colors">Data Structures</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 relative z-20 border-t border-outline-variant/30 pt-6">
+                    <div class="bg-primary-container/5 border-l-4 border-primary-container p-5 flex flex-col md:flex-row items-start gap-4">
+                        <span class="material-symbols-outlined text-primary-container text-3xl mt-1 shrink-0">info</span>
+                        <div>
+                            <h4 class="font-display text-[10px] tracking-[0.2em] text-primary-container uppercase mb-2">Transmission Log / About</h4>
+                            <p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                                This e-portfolio presents my Midterm Project in Object-Oriented Programming using Wix. It includes quizzes, activities, and exams that demonstrate my understanding of OOP concepts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="midterms" class="scroll-mt-28">
+            <div class="border-b border-primary-container/30 pb-2 mb-6">
+                <h2 class="font-display text-2xl font-bold text-primary-container uppercase tracking-widest">Coursework</h2>
+                <p class="font-display text-xs text-on-surface-variant mt-1 uppercase tracking-widest">Midterm Activities & Quizzes</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            
+
+                <button onclick="openModal('modal-seatwork-1')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">edit_document</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Seatwork #1</p>
+                    <h3 class="font-display text-xl text-white mb-4">Operators</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-primary-container font-bold">Graded</span></span>
+                        <span class="font-display font-bold text-primary-container text-sm">30/30 pts</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-activity-1')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">data_object</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Midterm Activity 1</p>
+                    <h3 class="font-display text-xl text-white mb-4">Variables</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-activity-2')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">calculate</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Midterm Activity #2</p>
+                    <h3 class="font-display text-xl text-white mb-4">Operators</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-activity-3')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">atm</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Midterm Activity #3</p>
+                    <h3 class="font-display text-xl text-white mb-4">ATM with Transaction Counter</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-activity-4')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">account_balance_wallet</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Midterm Activity #4</p>
+                    <h3 class="font-display text-xl text-white mb-4">Student Payment System</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-activity-5')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">receipt_long</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Midterm Activity #5</p>
+                    <h3 class="font-display text-xl text-white mb-4">Personal Expense Tracker</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-seatwork-2')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full">
+                    <div class="material-symbols-outlined text-primary-container/50 text-3xl mb-4 group-hover:text-primary-container transition-colors">edit_document</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Seatwork #2</p>
+                    <h3 class="font-display text-xl text-white mb-4">Student Scholarship</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+                <button onclick="openModal('modal-quiz-1')" class="text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col h-full border-secondary/30">
+                    <div class="material-symbols-outlined text-secondary/50 text-3xl mb-4 group-hover:text-secondary transition-colors">quiz</div>
+                    <p class="font-display text-xs text-secondary mb-1 uppercase tracking-wider">Assessment</p>
+                    <h3 class="font-display text-xl text-white mb-4">Quiz #1: Fundamentals & Logic</h3>
+                    <div class="flex justify-between items-center border-t border-outline-variant/50 pt-4 mt-auto w-full">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        
+                        <span class="font-display font-bold text-secondary text-sm">Pending</span>
+                    </div>
+                </button>
+
+            </div>
+
+            <div class="w-full">
+                <button onclick="openModal('modal-midterm-exam')" class="w-full text-left glass-panel p-6 angled-corner relative group transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between border-primary-container/50 hover:border-primary-container">
+                    <div class="absolute inset-0 bg-primary-container/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="flex items-center gap-6 relative z-10">
+                        <div class="material-symbols-outlined text-primary-container text-5xl">military_tech</div>
+                        <div>
+                            <p class="font-display text-xs text-primary-container mb-1 uppercase tracking-widest">Major Examination</p>
+                            <h3 class="font-display text-2xl text-white">Midterm Departmental Exam</h3>
+                            <p class="text-sm text-on-surface-variant mt-2 max-w-2xl">Comprehensive assessment covering Java fundamentals, variables, loops, decision structures, and basic object-oriented principles.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end border-t md:border-t-0 md:border-l border-outline-variant/50 pt-4 md:pt-0 md:pl-6 mt-4 md:mt-0 w-full md:w-auto relative z-10">
+                        <span class="font-display text-on-surface-variant text-[10px] tracking-widest uppercase mb-1">Status: <span class="text-secondary font-bold">Submitted</span></span>
+                        <span class="font-display font-bold text-secondary text-lg">Pending Grading</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <section id="finals" class="scroll-mt-28 border border-error/30 bg-error-container/5 p-8 angled-corner relative overflow-hidden flex flex-col items-center justify-center text-center min-h-[250px]">
+            <div class="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(45deg,#ffb4ab,#ffb4ab_10px,#690005_10px,#690005_20px)]"></div>
+            <div class="absolute bottom-0 left-0 w-full h-2 bg-[repeating-linear-gradient(45deg,#ffb4ab,#ffb4ab_10px,#690005_10px,#690005_20px)]"></div>
+            
+            <span class="material-symbols-outlined text-error text-5xl mb-4">warning</span>
+            <h2 class="font-display text-2xl font-bold text-error uppercase tracking-widest mb-2">Finals Section Locked</h2>
+            <p class="text-on-surface-variant text-sm max-w-md">
+                WORK IN PROGRESS. This sector is currently locked until the final examination period commences. Check back later.
+            </p>
+        </section>
+
+        <section id="contact" class="scroll-mt-28 glass-panel p-8 angled-corner relative min-h-[500px] flex flex-col items-center justify-center overflow-hidden">
+            <div class="z-10 text-center mb-16">
+                <h2 class="font-display text-2xl font-bold text-primary-container uppercase tracking-widest">Connect Matrix</h2>
+            </div>
+
+            <div class="relative w-[300px] h-[300px] flex items-center justify-center z-10">
+                <div class="absolute w-12 h-12 bg-primary-container/20 rounded-full flex items-center justify-center border border-primary-container shadow-[0_0_15px_#00f2ff]">
+                    <span class="material-symbols-outlined text-primary-container">radar</span>
+                </div>
+                
+                <div class="absolute w-[180px] h-[180px] border border-dashed border-primary-container/20 rounded-full animate-[spin_15s_linear_infinite]">
+                    <a href="tel:+1234567890" class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-surface rounded-full flex items-center justify-center border-2 border-green-400 hover:scale-125 transition-transform animate-[spin_15s_linear_infinite_reverse] group">
+                        <span class="material-symbols-outlined text-green-400 text-sm">phone_iphone</span>
+                        <span class="absolute -top-8 font-display text-[10px] text-green-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity bg-surface px-2 border border-green-400/50">Mobile</span>
+                    </a>
+                </div>
+
+                <div class="absolute w-[280px] h-[280px] border border-dashed border-primary-container/30 rounded-full animate-[spin_25s_linear_infinite_reverse]">
+                    <a href="mailto:jamiekimjavier@gmail.com" class="absolute top-1/2 -right-5 -translate-y-1/2 w-10 h-10 bg-surface rounded-full flex items-center justify-center border-2 border-secondary hover:scale-125 transition-transform animate-[spin_25s_linear_infinite] group">
+                        <span class="material-symbols-outlined text-secondary text-sm">mail</span>
+                        <span class="absolute -top-8 font-display text-[10px] text-secondary uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity bg-surface px-2 border border-secondary/50">Email</span>
+                    </a>
+                </div>
+
+                <div class="absolute w-[400px] h-[400px] border border-dashed border-primary-container/20 rounded-full animate-[spin_35s_linear_infinite]">
+                    <a href="https://github.com/jamiekimjavier/" target="_blank" class="absolute bottom-4 left-16 w-12 h-12 bg-surface rounded-full flex items-center justify-center border-2 border-white hover:scale-125 transition-transform animate-[spin_35s_linear_infinite_reverse] group shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                        <span class="material-symbols-outlined text-white">code</span>
+                        <span class="absolute -top-8 font-display text-[10px] text-white uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity bg-surface px-2 border border-white/50">GitHub</span>
+                    </a>
+                </div>
+
+                <div class="absolute w-[550px] h-[550px] border border-dashed border-primary-container/10 rounded-full animate-[spin_45s_linear_infinite_reverse]">
+                    <a href="https://linkedin.com/in/jamie-kim-javier-5a04a1301" target="_blank" class="absolute top-1/4 left-0 w-12 h-12 bg-surface rounded-full flex items-center justify-center border-2 border-blue-400 hover:scale-125 transition-transform animate-[spin_45s_linear_infinite] group shadow-[0_0_10px_rgba(96,165,250,0.3)]">
+                        <span class="material-symbols-outlined text-blue-400">work</span>
+                        <span class="absolute -top-8 font-display text-[10px] text-blue-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity bg-surface px-2 border border-blue-400/50">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+
+    <div id="modal-activity-1" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Midterm Activity 1: Variables</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-activity-1')" class="text-on-surface-variant hover:text-error transition-colors p-2">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">assignment</span> Instructions
+                    </h3>
+                    <div class="bg-surface-container p-4 border-l-4 border-primary-container text-sm text-on-surface-variant space-y-2">
+                        <ul class="list-disc pl-5">
+                            <li>Carefully analyze the given Java program.</li>
+                            <li>Trace the references and memory changes step-by-step.</li>
+                            <li>Complete all required tables and questions (Variable Identification, Memory Impact, and Output).</li>
+                            <li>Show your logical reasoning where necessary.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">code</span> Provided Code For Analysis
+                    </h3>
+                    <div class="bg-[#0c0e12] border border-outline-variant p-4 rounded-md overflow-x-auto">
+<pre><code class="text-sm font-mono text-secondary-fixed">class Student {
+    String name;
+    int grade;
+
+    Student(String n, int g) {
+        name = n;
+        grade = g;
+    }
+}
+
+public class TestStudent {
+    public static void main(String[] args) {
+        Student s1 = new Student("John", 85);
+        Student s2 = new Student("Maria", 90);
+        Student s3 = s2;
+
+        s1.grade = 95;
+        s3.name = "Ana";
+
+        System.out.println(s1.name + " " + s1.grade);
+        System.out.println(s2.name + " " + s2.grade);
+        System.out.println(s3.name + " " + s3.grade);
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">table_chart</span> Part A: Variable Identification
+                    </h3>
+                    <div class="bg-surface-container border border-outline-variant rounded-md overflow-hidden">
+                        <table class="w-full text-left text-sm text-on-surface-variant">
+                            <thead class="bg-surface-container-high border-b border-outline-variant font-display uppercase tracking-widest text-[10px]">
+                                <tr>
+                                    <th class="p-3">Variable Name</th>
+                                    <th class="p-3 border-l border-outline-variant/30">Data Type</th>
+                                    <th class="p-3 border-l border-outline-variant/30">Variable Type</th>
+                                    <th class="p-3 border-l border-outline-variant/30">Stored In</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">name</td>
+                                    <td class="p-3 border-l border-outline-variant/30">String</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Instance</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Heap (inside Student)</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">grade</td>
+                                    <td class="p-3 border-l border-outline-variant/30">int</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Instance</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Heap (inside Student)</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">n</td>
+                                    <td class="p-3 border-l border-outline-variant/30">String</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Local Parameter</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Stack</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">g</td>
+                                    <td class="p-3 border-l border-outline-variant/30">int</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Local Parameter</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Stack</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">args</td>
+                                    <td class="p-3 border-l border-outline-variant/30">String[]</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Local / Parameter</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Stack</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">s1</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Student</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Local / Object Reference</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Stack</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">s2</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Student</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Local / Object Reference</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Stack</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono">s3</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Student</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Local / Object Reference</td>
+                                    <td class="p-3 border-l border-outline-variant/30">Stack</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">memory</span> Part B: Memory Impact
+                    </h3>
+                    <div class="bg-surface-container border border-outline-variant rounded-md overflow-hidden">
+                        <table class="w-full text-left text-sm text-on-surface-variant">
+                            <thead class="bg-surface-container-high border-b border-outline-variant font-display uppercase tracking-widest text-[10px]">
+                                <tr>
+                                    <th class="p-3 w-1/3">Statement</th>
+                                    <th class="p-3 border-l border-outline-variant/30 w-1/3">What Happens?</th>
+                                    <th class="p-3 border-l border-outline-variant/30 w-1/3">Memory Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono text-xs">Student s1 = new Student("John", 85);</td>
+                                    <td class="p-3 border-l border-outline-variant/30">A new student object is made with the name John and grade of 85.</td>
+                                    <td class="p-3 border-l border-outline-variant/30"><strong>Stack:</strong> Allocates space for variable.<br><strong>Heap:</strong> Stack points to this new heap.</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono text-xs">Student s2 = new Student("Maria", 90);</td>
+                                    <td class="p-3 border-l border-outline-variant/30">A second student is made with the name Maria and grade of 90.</td>
+                                    <td class="p-3 border-l border-outline-variant/30"><strong>Stack:</strong> Allocates space for variable.<br><strong>Heap:</strong> Stack points to this new heap.</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono text-xs">Student s3 = s2;</td>
+                                    <td class="p-3 border-l border-outline-variant/30">The information in s2 is copied over to s3.</td>
+                                    <td class="p-3 border-l border-outline-variant/30"><strong>Stack:</strong> Allocates space, but copies address over.<br><strong>Heap:</strong> No new object is created.</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/30 hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono text-xs">s1.grade = 95;</td>
+                                    <td class="p-3 border-l border-outline-variant/30">The grade property of the object referenced by s1 is changed to 95.</td>
+                                    <td class="p-3 border-l border-outline-variant/30"><strong>Stack:</strong> References don't change.<br><strong>Heap:</strong> Data is overwritten with 95.</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 text-white font-mono text-xs">s3.name = "Ana";</td>
+                                    <td class="p-3 border-l border-outline-variant/30">The name of the object referenced by s3 is updated to Ana.</td>
+                                    <td class="p-3 border-l border-outline-variant/30"><strong>Stack:</strong> References don't change.<br><strong>Heap:</strong> Data is overwritten with Ana.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">terminal</span> Part C: Final Output
+                    </h3>
+                    <div class="bg-surface-container p-4 border border-outline-variant font-mono text-sm text-white whitespace-pre">John 95
+Ana 90
+Ana 90</div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings
+                    </h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed border-l-2 border-secondary pl-4">
+                        This activity successfully demonstrated the distinction between primitive data types and object references in Java. By tracing the code, I observed how multiple variables (like <code>s2</code> and <code>s3</code>) can point to the exact same object in the Heap, meaning a modification through one reference immediately affects the data accessed by the other.
+                    </p>
+                </div>
+
+                <div class="border-t border-primary-container/20 pt-8 mt-4 flex justify-center">
+                    <a href="BSIT2-1N_Javier_Jamie Kim_CodeAnalysisActivity#1.pdf" target="_blank" class="px-8 py-3 bg-primary-container/10 border border-primary-container text-primary-container font-display font-bold uppercase tracking-widest hover:bg-primary-container hover:text-surface transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
+                        View Original PDF Submission
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+
+    <div id="modal-activity-2" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Midterm Activity #2: Operators</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-activity-2')" class="text-on-surface-variant hover:text-error transition-colors p-2"><span class="material-symbols-outlined text-3xl">close</span></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">assignment</span> Instructions</h3>
+                    <div class="bg-surface-container p-4 border-l-4 border-primary-container text-sm text-on-surface-variant space-y-4">
+                        <div>
+                            <p class="font-bold text-white mb-1">General Instructions:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Create a Java program based on the questions.</li>
+                                <li>Follow the exact required output shown in the question.</li>
+                                <li>You must use the specific operator required in each number.</li>
+                                <li>Do NOT hardcode the final answers (e.g., System.out.println(86); without computation is not allowed).</li>
+                                <li>Show proper use of variables and correct operator usage.</li>
+                                <li>Follow proper Java syntax, indentation, and naming conventions.</li>
+                                <li>Use System.out.println() for displaying output.</li>
+                                <li>Screenshot the code and the output.</li>
+                                <li>Compile and run your program to verify correctness before submission.</li>
+                                <li>Submission Format: Section_LastName_FirstName_OperatorsActivity#2.pdf</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">PART I:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Create a Java program using bitwise operators that will produce the output: true, 10, false, 15.</li>
+                                <li>Create a Java program using the ternary operator that will produce the output: true, false, 25, 30.</li>
+                                <li>Create a Java program using assignment operators that will produce the output: Addition: 120, Subtraction: 70, Multiplication: 144, Division: 16.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">PART II: Program Requirements:</p>
+                            <p class="mb-1">Use at least five (5) different operators from the following categories:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Arithmetic operators (+, -, *, /, %)</li>
+                                <li>Relational operators (>, <, >=, <=, ==, !=)</li>
+                                <li>Logical operators (&&, ||, !)</li>
+                                <li>Unary operators (++, --)</li>
+                                <li>Assignment operators (+=, -=, *=, /=)</li>
+                                <li>Bitwise operators (&, |, ^, <<, >>)</li>
+                            </ul>
+                            <p class="mt-2 mb-1">The program must produce exactly six (6) outputs only.</p>
+                            <p class="mb-1">At least one output must include a tricky increment or decrement case, such as:</p>
+                            <ul class="list-none pl-5 space-y-1 font-mono text-xs">
+                                <li>a++ + ++a</li>
+                                <li>--b + b++</li>
+                            </ul>
+                            <p class="mt-1 mb-1">or any similar expression that modifies the variable within the same statement.</p>
+                            <p class="mt-2 mb-1">Do NOT reuse:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Any variable values</li>
+                                <li>Any variable names</li>
+                                <li>Any logic patterns from Part I.</li>
+                            </ul>
+                            <p class="mt-2 mb-1">The output must contain:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>At least two (2) boolean results</li>
+                                <li>At least four (4) numeric results</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">code</span> Part I: Source Code & Output</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="bg-[#0c0e12] border border-outline-variant p-4 rounded-md overflow-x-auto">
+<pre><code class="text-xs font-mono text-secondary-fixed">// 1. Bitwise Activity
+public class BitwiseActivity {
+    public static void main(String[] args) {
+        boolean a = true;
+        boolean b = false;
+        System.out.println(a | b);
+        int numA = 8;
+        int numB = 2;
+        System.out.println(numA | numB);
+        System.out.println(a & b);
+        int numC = 7;
+        int numD = 8;
+        System.out.println(numC | numD);
+    }
+}
+
+// 2. Ternary Activity
+public class TernaryActivity {
+    public static void main(String[] args) {
+        int x = 67;
+        int y = 21;
+        System.out.println((x > y) ? true : false);
+        System.out.println((x < y) ? true : false);
+        System.out.println((x == 67) ? 25 : 0);
+        System.out.println((y == 67) ? 0 : 30);
+    }
+}
+
+// 3. Assignment Activity
+public class AssignmentActivity {
+    public static void main(String[] args) {
+        int a = 67;
+        a += 53;
+        System.out.println("Addition: " + a);
+        int b = 137;
+        b -= 67;
+        System.out.println("Subtraction: " + b);
+        int c = 72;
+        c *= 2;
+        System.out.println("Multiplication: " + c);
+        int d = 64;
+        d /= 4;
+        System.out.println("Division: " + d);
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-surface-container p-4 border border-outline-variant font-mono text-xs text-on-surface-variant whitespace-pre flex flex-col justify-between">
+<div><span class="text-primary-container">=== BITWISE OUTPUT ===</span>
+true
+10
+false
+15
+
+<span class="text-primary-container">=== TERNARY OUTPUT ===</span>
+true
+false
+25
+30
+
+<span class="text-primary-container">=== ASSIGNMENT OUTPUT ===</span>
+Addition: 120
+Subtraction: 70
+Multiplication: 144
+Division: 16</div>
+<div class="mt-4 text-secondary">*** Code Execution Successful ***</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">code</span> Part II: Advanced Operators</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="bg-[#0c0e12] border border-outline-variant p-4 rounded-md overflow-x-auto">
+<pre><code class="text-xs font-mono text-secondary-fixed">/**
+ * @author Javier
+ */
+public class AdvancedOperators {
+    public static void main(String[] args) {
+        int alpha = 5;
+        int beta = 8;
+        int omega = 50;
+        
+        int trickyResult = alpha++ + --alpha;
+        System.out.println(trickyResult);
+        
+        boolean logicalRelational = (beta > 3) && (omega <= 100);
+        System.out.println(logicalRelational);
+        
+        boolean logicalRelational2 = (omega == 40) || (beta != 9);
+        System.out.println(logicalRelational2);
+        
+        omega %= 7;
+        System.out.println(omega);
+        
+        int delta = beta * 3 - 4;
+        System.out.println(delta);
+        
+        int epsilon = 2 << 2;
+        System.out.println(epsilon);
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-surface-container p-4 border border-outline-variant font-mono text-xs text-on-surface-variant whitespace-pre flex flex-col justify-between">
+<div>10
+true
+true
+1
+20
+8</div>
+<div class="mt-4 text-secondary">*** Code Execution Successful ***</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed border-l-2 border-secondary pl-4">Handling tricky increments (like <code>alpha++ + --alpha</code>) required careful trace-downs of how the variable updates in memory mid-statement. It highlighted the importance of code readability vs. compact logic operations, and forced me to creatively map out different operator categories without repeating patterns.</p>
+                </div>
+                
+                <div class="border-t border-primary-container/20 pt-8 mt-8 flex justify-center">
+                    <a href="IT2-1N_Javier_Jamie Kim_OperatorsActivity#2.pdf" target="_blank" class="px-8 py-3 bg-primary-container/10 border border-primary-container text-primary-container font-display font-bold uppercase tracking-widest hover:bg-primary-container hover:text-surface transition-all flex items-center gap-2"><span class="material-symbols-outlined">picture_as_pdf</span> View Original PDF Submission</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div id="modal-activity-3" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Midterm Activity #3: ATM with Transaction Counter</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-activity-3')" class="text-on-surface-variant hover:text-error transition-colors p-2">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">assignment</span> Instructions
+                    </h3>
+                    <div class="bg-surface-container p-6 border-l-4 border-primary-container text-sm text-on-surface-variant space-y-4">
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">Objective</p>
+                            <p>Create a Java program that accepts student information and evaluates the student's grade using decision structures.</p>
+                        </div>
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">Program Requirements</p>
+                            <ol class="list-decimal pl-5 space-y-1">
+                                <li>Create a Java program named SecureATMSystemLastName.</li>
+                                <li>Ask the user to enter a PIN before accessing the system.</li>
+                                <li>The correct PIN is LastName1234. Eg. Bedis1234</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Conditions</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>The user has 3 attempts to enter the correct PIN.</li>
+                                <li>If the PIN is incorrect after 3 attempts, display: Account Locked</li>
+                                <li>If the PIN is correct, display the menu:<br><br>
+                                ===== ATM MENU =====<br>
+                                1. Check Balance<br>
+                                2. Deposit<br>
+                                3. Withdraw<br>
+                                4. Exit</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Program Rules</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Use a switch statement to process the selected option.</li>
+                                <li>Use nested if, switch statement and while loop.</li>
+                                <li>Use if-else statements to validate withdrawal.</li>
+                                <li>Maximum withdrawal per transaction: 2,000 pesos.</li>
+                                <li>The program must repeat using a do-while loop until the user selects Exit.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Submission Format</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Submit the Java source code file (.java).</li>
+                                <li>The filename must follow this format: Section_LastName_FirstName_ActivityName.java</li>
+                                <li>Include screenshots of the program output showing the following:
+                                    <ul class="list-[circle] pl-5 mt-1">
+                                        <li>User input</li>
+                                        <li>Program processing</li>
+                                        <li>Final output/result</li>
+                                    </ul>
+                                </li>
+                                <li>The screenshot must clearly display the entire console output.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Academic Integrity Policy</p>
+                            <p class="mb-1">Students must write their own program. Strictly prohibited:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Copying code</li>
+                                <li>Sharing answers</li>
+                                <li>Downloading solutions</li>
+                            </ul>
+                            <p class="mt-2 text-error">Identical outputs/code = score of 0</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">code</span> Source Code
+                    </h3>
+                    <div class="bg-[#0c0e12] border border-outline-variant p-4 rounded-md overflow-x-auto">
+<pre><code class="text-sm font-mono text-secondary-fixed">/**
+ * * @author Javier
+ * @version 1.0
+ */
+import java.util.Scanner;
+public class SecureATMSystemJavier { 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        //initializations 
+        String correctPin = "Javier1234";
+        boolean isPinCorrect = false;
+        int attempts = 0;
+        double anda = 28500; //erap ko
+
+        //logic for entering pin (3 attempts)
+        while (attempts < 3 && !isPinCorrect) {
+            System.out.print("Please enter your pin: ");
+            String enteredPin = scanner.nextLine();
+
+            //logic for pin checking if match sa real pin
+            if (enteredPin.equals(correctPin)) { 
+                isPinCorrect = true;
+            } else {
+                attempts++;
+                System.out.println("Warning: Incorrect PIN.");
+                
+                if (attempts < 3) {
+                    System.out.println("You have " + (3 - attempts) + " attempt(s) remaining.\n");
+                }
+            }
+        }
+        
+        //if magexceed attempts sa 3 na mali, lock account
+        if (attempts == 3 && !isPinCorrect) {
+            System.out.println("Account Locked");
+        }
+
+        //if tama yung pin, disp menu and let user choose
+        if (isPinCorrect == true) {
+            int choice;
+            
+            do {
+                System.out.println("\n===== ATM MENU ====="); 
+                System.out.println("1. Check Balance"); 
+                System.out.println("2. Deposit"); 
+                System.out.println("3. Withdraw"); 
+                System.out.println("4. Exit");
+                System.out.print("Choose: ");
+                choice = scanner.nextInt();
+                
+                //switch case for choices
+                switch (choice) {
+                    case 1:
+                        System.out.println("Here is your current balance: " + anda);
+                        break;
+                    case 2:
+                        double deposit;
+                        // prevent negative or zero deposits
+                        do {
+                            System.out.print("Enter the desired deposit amount: ");
+                            deposit = scanner.nextDouble();
+                            
+                            if (deposit <= 0) {
+                                System.out.println("Invalid amount. Please enter positive integers only.");
+                            }
+                        } while (deposit <= 0);
+                        //process
+                        anda += deposit;
+                        System.out.println("Deposit successful! You have added " + deposit + " pesos to your account.");
+                        break;
+                    case 3:
+                        double withdraw;
+                        //prevent negative or zero withdrawals
+                        do {
+                            System.out.print("Enter the desired withdrawal amount: ");
+                            withdraw = scanner.nextDouble();
+                            
+                            if (withdraw <= 0) {
+                                System.out.println("Invalid amount. Please enter positive integers only.");
+                            }
+                        } while (withdraw <= 0);
+                        //validation and process
+                        if (withdraw <= 2000) { 
+                            if (withdraw <= anda) {
+                                anda -= withdraw;
+                                System.out.println("Withdrawal successful! You have taken " + withdraw + " pesos from your account.");
+                            } else {
+                                System.out.println("Sorry! Insufficient balance. Try to deposit more to withdraw your desired amount.");
+                            }
+                        } else {
+                            System.out.println("Warning: The maximum withdrawal per transaction is 2,000 pesos.");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Now Exiting ATM...");
+                        break;
+                    default:
+                        System.out.println("Invalid Option, please choose from 1-4 only.");
+                        break;
+                }
+            } while (choice != 4);
+        }
+        scanner.close();
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">terminal</span> Output Log
+                    </h3>
+                    <div class="bg-surface-container p-4 border border-outline-variant font-mono text-sm text-on-surface-variant overflow-x-auto whitespace-pre">Please enter your pin: 1234
+Warning: Incorrect PIN.
+You have 2 attempt(s) remaining.
+
+Please enter your pin: 45733123
+Warning: Incorrect PIN.
+You have 1 attempt(s) remaining.
+
+Please enter your pin: saifaosihfoahfioahwoifhaf
+Warning: Incorrect PIN.
+Account Locked
+
+Please enter your pin: Javier1234
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. withdraw
+4. Exit
+Choose: 1
+Here is your current balance: 28500.0
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+Choose: 2
+Enter the desired deposit amount: -3375
+Invalid amount. Please enter positive integers only.
+Enter the desired deposit amount: 1000
+Deposit successful! You have added 1000.0 pesos to your account.
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. withdraw
+4. Exit
+Choose: 3
+Enter the desired withdrawal amount: -25639
+Invalid amount. Please enter positive integers only.
+Enter the desired withdrawal amount: 5000
+Warning: The maximum withdrawal per transaction is 2,000 pesos.
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. withdraw
+4. Exit
+Choose: 3
+Enter the desired withdrawal amount: 2000
+Withdrawal successful! You have taken 2000.0 pesos from your account.
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. withdraw
+4. Exit
+Choose: 1
+Here is your current balance: 27500.0
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. withdraw
+4. Exit
+Choose: 5
+Invalid Option, please choose from 1-4 only.
+
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. withdraw
+4. Exit
+Choose: 4
+Now Exiting ATM...</div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings
+                    </h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed border-l-2 border-secondary pl-4">
+                        Building this ATM simulator reinforced the use of <code>while</code> loops for system authentication (restricting access after 3 failed attempts) and <code>do-while</code> loops to maintain continuous menu navigation. The use of nested decision structures inside the <code>switch</code> cases was critical to catch invalid inputs like negative deposits or withdrawals exceeding both the account balance and the transaction limit.
+                    </p>
+                </div>
+
+                <div class="border-t border-primary-container/20 pt-8 mt-8 flex justify-center">
+                    <a href="IT2-1N_Javier_JamieKim_MidtermActivity3.pdf" target="_blank" class="px-8 py-3 bg-primary-container/10 border border-primary-container text-primary-container font-display font-bold uppercase tracking-widest hover:bg-primary-container hover:text-surface transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
+                        View Original PDF Submission
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div id="modal-activity-4" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Midterm Activity #4: Student Payment System</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-activity-4')" class="text-on-surface-variant hover:text-error transition-colors p-2">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">assignment</span> Instructions
+                    </h3>
+                    <div class="bg-surface-container p-6 border-l-4 border-primary-container text-sm text-on-surface-variant space-y-4">
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">Objective</p>
+                            <p>Create a Java program that simulates a student payment system using decision structures, loops, and user-defined validation.</p>
+                        </div>
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">Program Requirements</p>
+                            <ol class="list-decimal pl-5 space-y-1">
+                                <li>Create a Java program named:<br>StudentPaymentSystemLastName<br>(Example: StudentPaymentSystemBedis)</li>
+                                <li>Ask the user to input:<br>Student Name<br>Student ID<br>Total Tuition Fee</li>
+                                <li>Display the menu:<br>
+                                ===== PAYMENT MENU =====<br>
+                                1. Pay Tuition<br>
+                                2. Check Balance<br>
+                                3. Apply Discount<br>
+                                4. Exit</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Program Rules</p>
+                            <p class="font-bold mt-2">General Rules</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Use switch statement to process menu options</li>
+                                <li>Use do-while loop to repeat the program until Exit</li>
+                                <li>Use nested if statements for validation</li>
+                                <li>Use a counter variable to track number of transactions</li>
+                            </ul>
+                            
+                            <p class="font-bold mt-2">Payment Rules</p>
+                            <ol class="list-decimal pl-5 space-y-1">
+                                <li><strong>Pay Tuition</strong><br>Ask for payment amount<br>Validate:<br>If payment > remaining balance → display: Invalid Payment<br>Else deduct from balance<br>Increment transaction counter</li>
+                                <li><strong>Check Balance</strong><br>Display remaining balance<br>Increment transaction counter</li>
+                                <li><strong>Apply Discount</strong><br>Ask user if they are:<br>Regular Student<br>Scholar<br>Conditions:<br>If Scholar 20% discount<br>If Regular no discount<br>Discount applies only once</li>
+                                <li><strong>Exit</strong><br>Display:<br>Student Name<br>Total Transactions<br>Final Balance<br>End program</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">◆ Additional Conditions</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Prevent negative balance</li>
+                                <li>Prevent multiple discount applications</li>
+                                <li>Show message: No remaining balance if fully paid</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Submission Format</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Submit the Java source code file (.java)<br>Filename format: Section_LastName_FirstName_StudentPaymentSystem.java</li>
+                                <li>Include screenshots showing:<br>
+                                    <ul class="list-[circle] pl-5 mt-1">
+                                        <li>User input</li>
+                                        <li>Processing</li>
+                                        <li>Final output</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Academic Integrity Policy</p>
+                            <p class="mb-1">Students must write their own program. Strictly prohibited:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Copying code</li>
+                                <li>Sharing answers</li>
+                                <li>Downloading solutions</li>
+                            </ul>
+                            <p class="mt-2 text-error">Identical outputs/code = score of 0</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">code</span> Source Code
+                    </h3>
+                    <div class="bg-[#0c0e12] border border-outline-variant p-4 rounded-md overflow-x-auto">
+<pre><code class="text-sm font-mono text-secondary-fixed">/**
+ * * @author Javier
+ * @version 1.0
+ */
+import java.util.Scanner;
+
+public class StudentPaymentSystemJavier{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        //Ask user to input details
+        System.out.print("Please enter student name: ");
+        String name = scanner.nextLine();
+        System.out.print("Please enter student ID: ");
+        String id = scanner.nextLine();
+        double bill;
+        do {
+            System.out.print("Please enter total tuition fee: ");
+            bill = scanner.nextDouble();
+            if (bill < 0) {
+                System.out.println("Invalid input. Tuition fee cannot be negative.");
+            }
+        } while (bill < 0);
+
+        //initialization
+        int choice;
+        int transactions = 0; 
+        boolean mayDiscountBa = false;
+
+        //display menu
+        do {
+            System.out.println("\n===== PAYMENT MENU ====="); 
+            System.out.println("1. Pay Tuition"); 
+            System.out.println("2. Check Balance"); 
+            System.out.println("3. Apply Discount"); 
+            System.out.println("4. Exit");
+            System.out.print("Choose: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1: //pay tuition 
+                    if (bill <= 0) {
+                        System.out.println("No remaining balance.");
+                    } else {
+                        double payment;
+                        //prevent negative payments
+                        do {
+                            System.out.print("Enter payment amount: ");
+                            payment = scanner.nextDouble();
+                            
+                            if (payment < 0) {
+                                System.out.println("Invalid input. Payment cannot be negative.");
+                            }
+                        } while (payment < 0);
+
+                        //validation
+                        if (payment > bill) {
+                            System.out.println("Invalid Payment");
+                        } else {
+                            bill -= payment;
+                            transactions++; //transaction counter
+                            System.out.println("Payment successful! Your balance is now " + bill + " pesos.");
+                        }
+                    }
+                    break;
+                case 2: //check balance
+                    System.out.println("Remaining Balance: " + bill); 
+                    transactions++;
+                    break;
+                case 3: //apply discount
+                    if (!mayDiscountBa) { //multiple discount prevention
+                        System.out.println("Are you a:");
+                        System.out.println("1. Regular Student"); 
+                        System.out.println("2. Scholar"); 
+                        System.out.print("Enter choice: ");
+                        int type = scanner.nextInt();
+
+                        if (type == 2) {
+                            double discount = bill * 0.20; 
+                            bill -= discount; 
+                            System.out.println("20% discount applied.");
+                            mayDiscountBa = true;
+                        } else if (type == 1) {
+                            System.out.println("No discount for Regular Students."); 
+                            mayDiscountBa = true;
+                        } else {
+                            System.out.println("Invalid choice.");
+                        }
+                    } else {
+                        System.out.println("Discount has already been applied.");
+                    }
+                    break;
+                case 4:
+
+                    System.out.println("\n--- Result ---");
+                    System.out.println("Student Name: " + name);
+                    System.out.println("Total Transactions: " + transactions);
+                    System.out.println("Final Balance: " + bill);
+                    break;
+                default:
+                    System.out.println("Invalid menu option.");
+                    break;
+            }
+        } while (choice != 4); //until exit niya
+
+        scanner.close();
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">terminal</span> Output Log
+                    </h3>
+                    <div class="bg-surface-container p-4 border border-outline-variant font-mono text-sm text-on-surface-variant overflow-x-auto whitespace-pre">Please enter student name: Jamie Kim Javier
+Please enter student ID: 123456
+Please enter total tuition fee: 500
+Invalid input. Tuition fee cannot be negative.
+Please enter total tuition fee: 60000
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 1
+Enter payment amount: 40000
+Payment successful! Your balance is now 20000.0 pesos.
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 3
+Are you a:
+1. Regular student
+2. Scholar
+Enter choice: 2
+20% discount applied.
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 3
+Discount has already been applied.
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 2
+Remaining Balance: 15952.0
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 1
+Enter payment amount: 15952
+Payment successful! Your balance is now 0.0 pesos.
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 1
+No remaining balance.
+
+===== PAYMENT MENU =====
+1. Pay Tuition
+2. Check Balance
+3. Apply Discount
+4. Exit
+Choose: 4
+
+--- Result ---
+Student Name: Jamie Kim Javier
+Total Transactions: 4
+Final Balance: 0.0</div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings
+                    </h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed border-l-2 border-secondary pl-4">
+                        Implementing state tracking with booleans (like `mayDiscountBa`) was crucial to enforce business rules like "discounts only apply once". The combination of `do-while` and `switch` statements provided a clean architecture for interactive console applications. I also learned to add continuous checks to prevent negative values from being added or deducted, ensuring the program does not break logically when unexpected inputs are given.
+                    </p>
+                </div>
+
+                <div class="border-t border-primary-container/20 pt-8 mt-8 flex justify-center">
+                    <a href="IT2-1N_Javier_JamieKim_MidtermActivity4.pdf" target="_blank" class="px-8 py-3 bg-primary-container/10 border border-primary-container text-primary-container font-display font-bold uppercase tracking-widest hover:bg-primary-container hover:text-surface transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
+                        View Original PDF Submission
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>    
+
+
+
+    
+
+    <div id="modal-activity-5" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Midterm Activity #5: Personal Expense Tracker</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-activity-5')" class="text-on-surface-variant hover:text-error transition-colors p-2">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">assignment</span> Instructions
+                    </h3>
+                    <div class="bg-surface-container p-6 border-l-4 border-primary-container text-sm text-on-surface-variant space-y-4">
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">General Instructions</p>
+                            <p>Create a Java program named ExpenseTrackerLastName.</p>
+                            <p class="mt-2 font-bold text-white mb-1">Implement the following methods:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>A void method that displays the program title.</li>
+                                <li>A non-void method that calculates the total expenses using three values:<br>
+                                    <ul class="list-[circle] pl-5 mt-1">
+                                        <li>food</li>
+                                        <li>transportation</li>
+                                        <li>other expenses</li>
+                                    </ul>
+                                </li>
+                                <li>A non-void method that checks if the total expense exceeds a budget and returns a message.</li>
+                                <li>A void method that displays the total expense and the budget status.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <p class="font-bold text-white mb-1">In the main method:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Call all the methods you created.</li>
+                                <li>Display the final output clearly.</li>
+                                <li>Use appropriate method names, parameters, and return types.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Add at least TWO enhancements:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Accept user input</li>
+                                <li>Add another expense category</li>
+                                <li>Compute remaining budget</li>
+                                <li>Display a personalized message</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Ensure your program:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Compiles without errors</li>
+                                <li>Produces correct output</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Submission Format</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Submit the Java source code file (.java).</li>
+                                <li>The filename must follow this format: ExpenseTrackerLastName.pdf or ExpenseTrackerLastName.docs</li>
+                                <li>Include screenshots of the program output showing the following:<br>
+                                    <ul class="list-[circle] pl-5 mt-1">
+                                        <li>User input</li>
+                                        <li>Program processing</li>
+                                        <li>Final output/result</li>
+                                    </ul>
+                                </li>
+                                <li>The screenshot must clearly display the entire console output.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-white mb-1">Academic Integrity Policy</p>
+                            <p class="mb-1">Students must write their own program.</p>
+                            <p class="mb-1">The following are not allowed:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Copying code from classmates.</li>
+                                <li>Sharing source code.</li>
+                                <li>Downloading solutions from the internet.</li>
+                            </ul>
+                            <p class="mt-2 text-error">Students with identical programs may receive a score of 0.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">code</span> Source Code
+                    </h3>
+                    <div class="bg-[#0c0e12] border border-outline-variant p-4 rounded-md overflow-x-auto">
+<pre><code class="text-sm font-mono text-secondary-fixed">import java.util.Scanner;
+
+/**
+ * @author Javier
+ * @version 1.0
+ */
+public class ExpenseTrackerJavier {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        displayProgramTitle();
+        
+        //accept user input (enhancement 1/4)
+        System.out.print("Please enter your name: ");
+        String userName = scanner.nextLine();
+
+        //display a personalized message (enhancement 2/4)
+        System.out.print("Good day, " + userName + " !\n");
+        System.out.print("Please input your overall budget: ");
+        double budget = scanner.nextDouble();
+
+        System.out.print("Please input the total of your food expenses: ");
+        double puds = scanner.nextDouble();
+
+        System.out.print("Please input the total of your transportation expenses: ");
+        double transpo = scanner.nextDouble();
+
+        System.out.print("Input other general expenses: ");
+        double other = scanner.nextDouble();
+
+        //add another expense category (enhancement 3/4)
+        double customExpensesCatTotal = 0.0;
+        System.out.print("\nWould you like to add a custom expense category? (Y/N): ");
+        String choice = scanner.next();
+        
+        while (choice.toUpperCase().equals("Y")) {
+            scanner.nextLine(); 
+            
+            System.out.print("Enter the name of this custom category: ");
+            String categoryName = scanner.nextLine();
+            
+            System.out.print("Enter the expense amount for " + categoryName + ": ");
+            double amount = scanner.nextDouble();
+            
+            customExpensesCatTotal = customExpensesCatTotal + amount; 
+            
+            System.out.print("\nWould you like to add another custom expense category? (Y/N): ");
+            choice = scanner.next();
+        }
+        System.out.println("Successfully added custom categories!\n");
+        
+        //calling my methods
+        double baseExpenses = calculateTotalExpenses(puds, transpo, other);
+        double grandTotal = baseExpenses + customExpensesCatTotal;
+        String statusMessage = checkBudgetStatus(grandTotal, budget, userName);
+        
+        //displaying final output
+        displayTotalExpenseAndBudget(userName, grandTotal, budget, statusMessage);
+
+        scanner.close();
+    }
+
+//void method that displays the program title
+    public static void displayProgramTitle() {
+        System.out.println("==========PERSONAL EXPENSE TRACKER==========");
+    }
+
+//non-void method that calculates the tot expenses using 3 values
+    public static double calculateTotalExpenses(double puds, double transpo, double other) {
+        return puds + transpo + other;
+    }
+
+//non-void method that checks if the total expencess exceeds a budget and returns a message
+    public static String checkBudgetStatus(double totalExpense, double budget, String userName) {
+        if (totalExpense > budget) {
+            //display a personalized message (enhancement 2/4)
+            return "Budget exceeded! Please proceed to cut back on your expenses," + userName;
+        } else if (totalExpense == budget) {
+            return "WARNING: You have spent your exact allocated budget, please avoid spending more as much as possible.";
+        } else {
+            return "You right are within your budget. Good job, " + userName;
+        }
+    }
+
+//void method that displays tot expense and budget status
+    public static void displayTotalExpenseAndBudget(String name, double totalExpense, double budget, String statusMsg) {
+        //compute remaining budget (enhancement 4/4) yeyy
+        double remaining = budget - totalExpense; 
+        
+        //display a personalized message (enhancement 2/4)
+        System.out.println("========" + name + "'s Financial Summary========");
+        System.out.println("Total Budget     : " + budget + " Pesos");
+        System.out.println("Total Expenses   : " + totalExpense + " Pesos");
+        System.out.println("Remaining Balance: " + remaining + " Pesos");
+        System.out.println("====================================================");
+        System.out.println("Status: " + statusMsg);
+        System.out.println("====================================================");
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">terminal</span> Output Log (Possibility 1 - Within Budget)
+                    </h3>
+                    <div class="bg-surface-container p-4 border border-outline-variant font-mono text-sm text-on-surface-variant overflow-x-auto whitespace-pre">==========PERSONAL EXPENSE TRACKER==========
+Please enter your name: Jamie Kim
+Good day. Jamie Kim!
+Please input your overall budget: 1000
+Please input the total of your food expenses: 500
+Please input the total of your transportation expenses: 200
+Input other general expenses: 20
+
+Would you like to add a custom expense category? (Y/N): y
+Enter the name of this custom category: Netflix
+Enter the expense amount for Netflix: 200
+
+Would you like to add another custom expense category? (Y/N): N
+Successfully added custom categories!
+
+========Jamie Kim's Financial Summary========
+Total Budget     : 1000.0 Pesos
+Total Expenses   : 920.0 Pesos
+Remaining Balance: 80.0 Pesos
+====================================================
+Status: You right are within your budget. Good job, Jamie Kim
+====================================================</div>
+                </div>
+
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings
+                    </h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed border-l-2 border-secondary pl-4">
+                        Refactoring code into separate methods (like <code>calculateTotalExpenses</code> and <code>checkBudgetStatus</code>) made the <code>main</code> method much cleaner and easier to read. It showed me how method parameters and return types work together to handle data flow. I was also able to successfully implement all four enhancements, which required combining loops for dynamic input generation with calculations to determine remaining balances across both standard and custom categories.
+                    </p>
+                </div>
+
+                <div class="border-t border-primary-container/20 pt-8 mt-8 flex justify-center">
+                    <a href="ExpenseTrackerJavier.pdf" target="_blank" class="px-8 py-3 bg-primary-container/10 border border-primary-container text-primary-container font-display font-bold uppercase tracking-widest hover:bg-primary-container hover:text-surface transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
+                        View Original PDF Submission
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div id="modal-seatwork-1" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Seatwork #1: Operators</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Graded</p>
+                </div>
+                <button onclick="closeModal('modal-seatwork-1')" class="text-on-surface-variant hover:text-error transition-colors p-2"><span class="material-symbols-outlined text-3xl">close</span></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">assignment</span> Instructions</h3>
+                    <div class="bg-surface-container p-4 border-l-4 border-primary-container text-sm text-on-surface-variant">
+                        <p>We were instructed to solve and evaluate several lines of statements to determine the output of different types of operators. The seatwork also required us to trace the steps in order to help us grasp how prefix and postfix operators worked in theory and in practice. </p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">For this particular seatwork, I learned how operator precedence worked and how much difference the placement of the operators can make on the overall code. For example, when evaluating a statement such as ++a compared to a++, I could clearly observe the difference in how they were being handled in memory. 
+                    <br>
+                    <br>
+                    Prefix applied the operation immediately while postfix only applies the operation after the statement. If not tracked properly, it can lead to confusion and errors that could cause a domino effect on the whole program, since for the last statement to be deemed correct, the ones before it must also be accurate.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-seatwork-2" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Seatwork #2: Student Scholarship</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-seatwork-2')" class="text-on-surface-variant hover:text-error transition-colors p-2"><span class="material-symbols-outlined text-3xl">close</span></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">assignment</span> Instructions</h3>
+                    <div class="bg-surface-container p-4 border-l-4 border-primary-container text-sm text-on-surface-variant">
+                        <p>
+                            For this next seatwork, we were tasked to write a Java program that evaluates a student's eligibiliy for a scholarship based on their grade and parents' income if i remember correctly. Here we applied the concepts of nested ifs, taking user inputs and switch cases.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">This activity taught me how to correctly apply basic control flow statements in Java like if-else logic, nested if-else logic, and switch cases. I also got to explore how the Java scanner function worked, which was a pretty new concept to me overall since I presumed that Java was very similar to C. I observed that using the scanner function was similar to how we used functions in Python, but other than that similarity the logic Java uses to take user input has been pretty unique compared to the other languages I've learned so far.
+                    <br>
+                    <br>
+                    In addition to this, coding on paper also refined my pseudo-coding skills since I didn't have access to comments that I could just erase or blocks of code I could just paste around or reuse, I had to make the most of my paper and be efficient while writing it. Which is why I could confirm that coding manually on paper has perks that typing doesn't usually have.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="modal-quiz-1" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Quiz #1: Introduction to Java</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Submitted</p>
+                </div>
+                <button onclick="closeModal('modal-quiz-1')" class="text-on-surface-variant hover:text-error transition-colors p-2"><span class="material-symbols-outlined text-3xl">close</span></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">assignment</span> Instructions</h3>
+                    <div class="bg-surface-container p-4 border-l-4 border-primary-container text-sm text-on-surface-variant">
+                        <p>For this assessment, we were asked questions regarding our lesson on Introduction to Java, including our knowledge on memory management, the history of Java, features of Java and how Java compilation and interpretation works in general.
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        Taking this quiz helped ingrain the more unique aspects of Java into my brain. It established the special way it handled memory right from the get go, which made understanding the topics that followed a lot more easier to grasp. It was made clear to me that understanding the mechanics of Java is just as important as memorizing syntax. It also helped with my active recall to be applied to my midterms exams later on.
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-midterm-exam" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 modal-overlay">
+        <div class="glass-panel w-full max-w-5xl max-h-[90vh] flex flex-col angled-corner relative overflow-hidden modal-enter">
+            <div class="flex justify-between items-center p-6 border-b border-primary-container/30 bg-surface-container/50">
+                <div>
+                    <h2 class="font-display text-2xl font-bold text-primary-fixed uppercase tracking-wider">Midterm Departmental Exam</h2>
+                    <p class="font-display text-xs text-on-surface-variant tracking-widest uppercase mt-1">Status: Pending Grading</p>
+                </div>
+                <button onclick="closeModal('modal-midterm-exam')" class="text-on-surface-variant hover:text-error transition-colors p-2"><span class="material-symbols-outlined text-3xl">close</span></button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-8 flex-1 custom-scrollbar">
+                <div>
+                    <h3 class="font-display text-lg text-primary-container uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">assignment</span> Instructions</h3>
+                    <div class="bg-surface-container p-4 border-l-4 border-primary-container text-sm text-on-surface-variant">
+                        <p> The midterms examination contained all the topics discussed the first half of this semerster including the introduction to Java up until Methods. There were 3 parts to the test: True or False, Multiple Choice and a Coding Section which was fill-in-the blanks.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-secondary uppercase tracking-widest flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-sm">psychology</span> Reflection & Learnings</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">The midterms examination actually solidified my knowledge regarding Java overall and  made me more confident with my skills as I was able to take test without as much difficulty as I expected. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal when clicking outside the panel
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ========================================== //
+        // 3D MODEL LOGIC (THREE.JS)                  //
+        // ========================================== //
+        function init3DProfile() {
+            const container = document.getElementById('3d-model-container');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+            
+            // Camera Setup
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+            camera.position.set(0, 1.5, 4);
+
+            // Renderer Setup
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            container.appendChild(renderer.domElement);
+
+            // Interaction Controls
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = false; // Disabled so page scroll isn't hijacked
+            controls.enablePan = false;
+            // Limit vertical rotation to keep the view focused
+            controls.minPolarAngle = Math.PI / 3;
+            controls.maxPolarAngle = Math.PI / 1.8;
+
+            // Lighting setup for Sci-Fi aesthetic
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const mainLight = new THREE.DirectionalLight(0x00f2ff, 1); // Cyan rim light
+            mainLight.position.set(5, 5, 5);
+            scene.add(mainLight);
+
+            const fillLight = new THREE.DirectionalLight(0xa0caff, 0.5); // Soft blue fill
+            fillLight.position.set(-5, 0, -5);
+            scene.add(fillLight);
+
+            // ======================================================== //
+            // 🚨 LOAD YOUR CUSTOM MODEL HERE                           //
+            // ======================================================== //
+            // Replace the URL below with the path to your own .gltf or .glb file.
+            // Example: const modelUrl = 'assets/my-custom-model.glb';
+            
+            const modelUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/SciFiHelmet/glTF/SciFiHelmet.gltf'; 
+            
+            let loadedModel;
+            const loader = new THREE.GLTFLoader();
+
+            loader.load(modelUrl, function (gltf) {
+                loadedModel = gltf.scene;
+                
+                // Auto-scale and center the model dynamically
+                const box = new THREE.Box3().setFromObject(loadedModel);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 2.5 / maxDim; // Adjust "2.5" to make your model larger/smaller
+                
+                loadedModel.scale.set(scale, scale, scale);
+                loadedModel.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+
+                scene.add(loadedModel);
+            }, undefined, function (error) {
+                console.error('Error loading 3D model:', error);
+            });
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Slowly auto-rotate the model if the user isn't dragging it
+                if (loadedModel && !controls.state) { 
+                    loadedModel.rotation.y += 0.005;
+                }
+                
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Handle Window Resize
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // Initialize 3D scene when DOM is ready
+        window.addEventListener('DOMContentLoaded', init3DProfile);
+    </script>
+</body>
+</html>
